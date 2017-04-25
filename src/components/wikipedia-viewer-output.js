@@ -6,7 +6,7 @@ import 'script-loader!../../node_modules/foundation-sites/dist/js/foundation';
 class WikipediaViewerOutput extends React.Component {
   componentDidMount() {
     $(document).foundation();
-    this.resizeListener = addEventListener("resize", () => {
+    this.resizeListener = addEventListener('resize', () => {
       Foundation.reInit('equalizer');
     });
   }
@@ -16,7 +16,7 @@ class WikipediaViewerOutput extends React.Component {
   }
 
   componentWillUnmount() {
-    removeEventListener(this.resizeListener);
+    removeEventListener('resize', this.resizeListener);
   }
 
   renderSearchResult(searchResult) {
