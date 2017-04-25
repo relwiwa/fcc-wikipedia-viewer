@@ -114,6 +114,12 @@ class WikipediaViewer extends Component {
           searchTerm={searchTerm}
           searchResults={searchResults}
         />}
+        {(searchResults !== null && searchResults.length > 3) && <div className="show-for-small-only">
+          <WikipediaViewerInput
+            searchTerm={searchTerm}
+            onUpdateSearchTerm={(event) => this.handleUpdateSearchTerm(event)}
+          />
+        </div>}
         <WikipediaViewerRandomButton />
       </div>
     )
