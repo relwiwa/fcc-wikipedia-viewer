@@ -26,13 +26,15 @@ class WikipediaViewerOutput extends React.Component {
         key={searchResult.headline}>
         <div className="card" data-equalizer-watch>
           <div className="card-section">
-            <h4>{searchResult.headline}</h4>
+            <h4 className="text-center">{searchResult.headline}</h4>
             <p>{searchResult.teaser}</p>
-            <a
-              className="button small primary"
-              href={searchResult.link}
-              title={'Read full article on Wikipedia: ' + searchResult.headline}
-            >Read Full Article</a>
+            <div className="text-center">
+              <a
+                className="button small primary"
+                href={searchResult.link}
+                title={'Read full article on Wikipedia: ' + searchResult.headline}
+              >Read Full Article</a>
+            </div>
           </div>
         </div>
       </div>

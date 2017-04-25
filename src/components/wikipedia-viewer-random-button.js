@@ -7,7 +7,6 @@ const WikipediaViewerRandomButton = (props) => {
         href="https://en.wikipedia.org/wiki/Special:Random"
         title="Explore Wikipedia by proceeding to a random article"
         className="button primary"
-        target="new"
       >Random Article</a>
     </div>
   );
