@@ -1,14 +1,30 @@
 import React from 'react';
 
-const WikipediaViewerOutput = (props) => {
-  const { searchResults } = props;
+import 'script-loader!../../node_modules/jquery/dist/jquery.slim.min';
+import 'script-loader!../../node_modules/foundation-sites/dist/js/foundation';
 
-  const renderSearchResult = (searchResult) => {
+class WikipediaViewerOutput extends React.Component {
+  componentDidMount() {
+    $(document).foundation();
+    this.resizeListener = addEventListener("resize", () => {
+      Foundation.reInit('equalizer');
+    });
+  }
+
+  componentDidUpdate() {
+    Foundation.reInit('equalizer');
+  }
+
+  componentWillUnmount() {
+    removeEventListener(this.resizeListener);
+  }
+
+  renderSearchResult(searchResult) {
     return (
       <div
-        className="column column-block"
+        className="column"
         key={searchResult.headline}>
-        <div className="card">
+        <div className="card" data-equalizer-watch>
           <div className="card-section">
             <h4>{searchResult.headline}</h4>
             <p>{searchResult.teaser}</p>
@@ -23,13 +39,15 @@ const WikipediaViewerOutput = (props) => {
     );
   }
 
-  return (
-    <div className="wikipedia-viewer-output">
-      <div className="row medium-up-2 large-up-3">
-        {searchResults.map(searchResult => renderSearchResult(searchResult))}
+  render() {
+    const { searchResults } = this.props;
+
+    return (
+      <div className="wikipedia-viewer-output row medium-up-2 large-up-3" data-equalizer data-equalize-by-row="true">
+        {searchResults.map(searchResult => this.renderSearchResult(searchResult))}
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default WikipediaViewerOutput;
