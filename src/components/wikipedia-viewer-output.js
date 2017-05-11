@@ -1,7 +1,7 @@
 import React from 'react';
 
-import 'script-loader!../../node_modules/jquery/dist/jquery.slim.min';
-import 'script-loader!../../node_modules/foundation-sites/dist/js/foundation';
+import 'script-loader!jquery/dist/jquery.slim.min';
+import 'script-loader!foundation-sites/dist/js/foundation';
 
 class WikipediaViewerOutput extends React.Component {
   componentDidMount() {
