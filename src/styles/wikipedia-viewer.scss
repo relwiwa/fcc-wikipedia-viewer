@@ -1,0 +1,16 @@
+.wikipedia-viewer-input {
+  input {
+    height:60px;
+    box-shadow:0 0 15px gray;
+    outline:none;
+    border:none;
+  }
+
+  input:focus,
+  input:active,
+  input:hover {
+    outline:none;
+    border:none;
+    box-shadow:0 0 15px gray;
+  }
+} 

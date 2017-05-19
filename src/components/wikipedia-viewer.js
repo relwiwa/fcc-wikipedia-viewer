@@ -2,6 +2,7 @@ import axios from 'axios';
 import es6Promise from 'es6-promise';
 import React, { Component } from 'react';
 
+import '../styles/wikipedia-viewer.scss';
 import STATI from '../config/wikipedia-viewer-stati';
 
 import WikipediaViewerInput from './wikipedia-viewer-input';
@@ -103,10 +104,11 @@ class WikipediaViewer extends Component {
         <h1 className="text-center">A Wikipedia Viewer</h1>
         <p className="text-center">Search Wikipedia entries by providing a search term, or explore Wikipedia by proceeding to a random article</p>
         <WikipediaViewerInput
+          topOrBottom={'top'}
           searchTerm={searchTerm}
           onUpdateSearchTerm={(event) => this.handleUpdateSearchTerm(event)}
         />
-        {(status === STATI.searching && (searchResults === null || searchResults.length === 0)) && <p className="text-center">Performing search for Wikipedia articles</p>}        
+        {(status === STATI.searching && (searchResults === null || searchResults.length === 0)) && <p className="text-center"><i className="fa fa-spinner fa-3x"></i><br />Performing search for Wikipedia articles</p>}        
         {(status === STATI.searchDone && searchResults.length === 0) && <p className="text-center">There are no articles on Wikipedia for this search term</p>}
         {(status === STATI.error) && <p className="text-center">An error happened while searching for Wikipedia articles</p>}        
         <p className="text-center">{this.state.message}</p>
@@ -116,6 +118,7 @@ class WikipediaViewer extends Component {
         />}
         {(searchResults !== null && searchResults.length > 3) && <div className="show-for-small-only">
           <WikipediaViewerInput
+            topOrBottom={'bottom'}
             searchTerm={searchTerm}
             onUpdateSearchTerm={(event) => this.handleUpdateSearchTerm(event)}
           />
