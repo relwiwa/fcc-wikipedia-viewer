@@ -1,22 +1,40 @@
-import React from 'react';
+import $ from 'jquery/dist/jquery.slim';
 
-import 'script-loader!jquery/dist/jquery.slim.min';
-import 'script-loader!foundation-sites/dist/js/foundation';
+import React, { Component } from 'react';
+import { Foundation } from 'foundation-sites/js/foundation.core';
+import { MediaQuery } from 'foundation-sites/js/foundation.util.mediaQuery';
+import { ImageLoader } from 'foundation-sites/js/foundation.util.imageLoader';
+import { Equalizer } from 'foundation-sites/js/foundation.equalizer';
 
-class WikipediaViewerOutput extends React.Component {
+import SPEX from '../config/wikipedia-viewer.config';
+
+class WikipediaViewerOutput extends Component {
+
   componentDidMount() {
-    $(document).foundation();
-    this.resizeListener = addEventListener('resize', () => {
-      Foundation.reInit('equalizer');
-    });
+    /* - Add foundation to jQuery if it hasn't been added yet
+       - Necessary for $.foundation() function to be available */
+    if (!$(document).foundation) {
+      Foundation.addToJquery($);
+    }
+    /*  - Programmatically create new Equalizer on specified element
+        - The element now has the foundation() function
+        - That function is used to destroy the Equalizer object
+          when componentWillUnmount */
+    new Equalizer($('#' + SPEX.equalizer.output));
+    addEventListener('resize', () => this.reInitEqualizer());
   }
 
   componentDidUpdate() {
-    Foundation.reInit('equalizer');
+    this.reInitEqualizer();
   }
 
   componentWillUnmount() {
-    removeEventListener('resize', this.resizeListener);
+    removeEventListener('resize', this.reInitEqualizer);
+    $('#' + SPEX.equalizer.output).foundation('destroy');
+  }
+
+  reInitEqualizer() {
+    Foundation.reInit($('#' + SPEX.equalizer.output));
   }
 
   renderSearchResult(searchResult) {
@@ -24,7 +42,7 @@ class WikipediaViewerOutput extends React.Component {
       <div
         className="column"
         key={searchResult.headline}>
-        <div className="card" data-equalizer-watch>
+        <div className="card" data-equalizer-watch={SPEX.equalizer.output}>
           <div className="card-section">
             <h4 className="text-center">{searchResult.headline}</h4>
             <p>{searchResult.teaser}</p>
@@ -45,7 +63,12 @@ class WikipediaViewerOutput extends React.Component {
     const { searchResults } = this.props;
 
     return (
-      <div className="wikipedia-viewer-output row medium-up-2 large-up-3" data-equalizer data-equalize-by-row="true">
+      <div
+        className="wikipedia-viewer-output row medium-up-2 large-up-3"
+        data-equalizer={SPEX.equalizer.output}
+        data-equalize-by-row="true"
+        id={SPEX.equalizer.output}
+      >
         {searchResults.map(searchResult => this.renderSearchResult(searchResult))}
       </div>
     );
