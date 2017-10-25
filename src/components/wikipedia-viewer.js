@@ -101,32 +101,41 @@ class WikipediaViewer extends Component {
     const { stati } = SPEX;
 
     return (
-      <div className="wikipedia-viewer row columns">
-        <h1 className="text-center">A Wikipedia Viewer</h1>
-        <p className="text-center">Search Wikipedia entries by providing a search term, or explore Wikipedia by proceeding to a random article</p>
-        <WikipediaViewerInput
-          topOrBottom={'top'}
-          searchTerm={searchTerm}
-          onUpdateSearchTerm={(event) => this.handleUpdateSearchTerm(event)}
-        />
-        {(status === stati.searching && (searchResults === null || searchResults.length === 0)) && <p className="text-center"><i className="fa fa-spinner fa-3x"></i><br />Performing search for Wikipedia articles</p>}        
-        {(status === stati.searchDone && searchResults.length === 0) && <p className="text-center">There are no articles on Wikipedia for this search term</p>}
-        {(status === stati.error) && <p className="text-center">An error happened while searching for Wikipedia articles</p>}        
-        <p className="text-center">{this.state.message}</p>
-        {searchResults !== null && <WikipediaViewerOutput
-          searchTerm={searchTerm}
-          searchResults={searchResults}
-        />}
-        {(searchResults !== null && searchResults.length > 3) && <div className="show-for-small-only">
-          <WikipediaViewerInput
-            topOrBottom={'bottom'}
-            searchTerm={searchTerm}
-            onUpdateSearchTerm={(event) => this.handleUpdateSearchTerm(event)}
-          />
-        </div>}
-        <WikipediaViewerRandomButton />
+      <div className="wikipedia-viewer grid-container grid-container-padded">
+        <div className="grid-x grid-margin-y">
+          <div className="cell">
+            <h1 className="text-center">A Wikipedia Viewer</h1>
+            <p className="text-center">Search Wikipedia entries by providing a search term, or explore Wikipedia by proceeding to a random article</p>
+            <WikipediaViewerInput
+              topOrBottom={'top'}
+              searchTerm={searchTerm}
+              onUpdateSearchTerm={(event) => this.handleUpdateSearchTerm(event)}
+            />
+          </div>
+          <div className="cell">
+            {(status === stati.searching && (searchResults === null || searchResults.length === 0)) && <p className="text-center"><i className="fa fa-spinner fa-3x"></i><br />Performing search for Wikipedia articles</p>}        
+            {(status === stati.searchDone && searchResults.length === 0) && <p className="text-center">There are no articles on Wikipedia for this search term</p>}
+            {(status === stati.error) && <p className="text-center">An error happened while searching for Wikipedia articles</p>}        
+            {searchResults !== null && <WikipediaViewerOutput
+              searchTerm={searchTerm}
+              searchResults={searchResults}
+            />}
+          </div>
+          <div className="cell">
+            {(searchResults !== null && searchResults.length > 3) && <div className="show-for-small-only">
+              <WikipediaViewerInput
+                topOrBottom={'bottom'}
+                searchTerm={searchTerm}
+                onUpdateSearchTerm={(event) => this.handleUpdateSearchTerm(event)}
+              />
+            </div>}
+          </div>
+          <div className="cell">
+            <WikipediaViewerRandomButton />
+          </div>
+        </div>
       </div>
-    )
+    );
   }
 }
 

@@ -1,0 +1,13 @@
+@import "wikipedia-viewer.general.scss";
+
+.wikipedia-viewer-output-item {
+  @include box-shadow-style;
+
+  @media screen and (min-width: 40em) {
+    &:hover {
+      position:relative;
+      top:-5px;
+    }
+  }  
+}
+

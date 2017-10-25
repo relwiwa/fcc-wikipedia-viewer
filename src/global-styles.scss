@@ -2,7 +2,16 @@
 
 @include foundation-global-styles;
 @include foundation-button;
-@include foundation-card;
+@include foundation-flex-classes;
 @include foundation-forms;
-@include foundation-grid;
 @include foundation-typography;
+@include foundation-visibility-classes;
+@include foundation-xy-grid-classes(
+  $base-grid: true,
+  $margin-grid: true,
+  $padding-grid: true,
+  $block-grid: true,
+  $collapse: false,
+  $offset: false,
+  $vertical-grid: true
+);
