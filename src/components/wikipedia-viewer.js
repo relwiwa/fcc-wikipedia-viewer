@@ -1,5 +1,4 @@
 import axios from 'axios';
-import es6Promise from 'es6-promise';
 import React, { Component } from 'react';
 
 import '../styles/wikipedia-viewer.scss';
@@ -11,7 +10,6 @@ import WikipediaViewerRandomButton from './wikipedia-viewer-random-button';
 
 const apiUrl = 'https://en.wikipedia.org/w/api.php?action=opensearch&limit=' + SPEX.limitSearchItems + '&format=json&origin=*&search=';
 
-es6Promise.polyfill();
 const axiosConfig = axios.create({
   timeout: 5000,
   headers: {
