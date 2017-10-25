@@ -4,7 +4,6 @@ var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
-var packageJson = require('./package');
 
 const VENDOR_LIBS = ['react', 'react-dom'];
 
@@ -17,11 +16,6 @@ const config = {
     path: path.resolve(__dirname, 'build'),
     filename: '[name].[chunkhash].js',
     publicPath: './'
-  },
-  resolve: {
-    alias: {
-      jquery: "jquery/dist/jquery.slim"
-    }
   },
   module: {
     rules: [
