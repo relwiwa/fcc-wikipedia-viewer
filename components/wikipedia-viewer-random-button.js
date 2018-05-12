@@ -1,3 +1,4 @@
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import React from 'react';
 
 const WikipediaViewerRandomButton = (props) => {
@@ -7,7 +8,7 @@ const WikipediaViewerRandomButton = (props) => {
         href="https://en.wikipedia.org/wiki/Special:Random"
         title="Explore Wikipedia by proceeding to a random article"
         className="button primary"
-      >Random Article on Wikipedia</a>
+      ><FontAwesomeIcon icon="random" /> Random Article on Wikipedia</a>
     </div>
   );
 }
