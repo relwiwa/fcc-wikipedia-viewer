@@ -4,9 +4,9 @@ import React, { Component } from 'react';
 import '../styles/wikipedia-viewer.scss';
 import SPEX from '../config/wikipedia-viewer.config';
 
+import IconButton from '../../../reusable-components/icon-button';
 import WikipediaViewerInput from './wikipedia-viewer-input';
 import WikipediaViewerOutput from './wikipedia-viewer-output';
-import WikipediaViewerRandomButton from './wikipedia-viewer-random-button';
 
 const apiUrl = 'https://en.wikipedia.org/w/api.php?action=opensearch&limit=' + SPEX.limitSearchItems + '&format=json&origin=*&search=';
 
@@ -128,8 +128,13 @@ class WikipediaViewer extends Component {
               />
             </div>}
           </div>
-          <div className="cell">
-            <WikipediaViewerRandomButton />
+          <div className="cell text-center">
+            <IconButton
+              faIcon="random"
+              foundationClass="primary"
+              link="https://en.wikipedia.org/wiki/Special:Random"
+              text="Random Article on Wikipedia"
+            />
           </div>
         </div>
       </div>
